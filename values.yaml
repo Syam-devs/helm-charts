@@ -1,0 +1,5 @@
+deployment:
+  replicas: 2
+  image_version: latest
+service:   
+  targetport: 80

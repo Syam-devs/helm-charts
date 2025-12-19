@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx 
+  labels: 
+    purpose: deployment-demo
+    project: roboshop
+    app: nginx
+spec: 
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchlabels:
+      purpose: deployment-demo
+      project: roboshop
+      app: nginx
+  template:
+    metadata:
+      labels:
+        purpose: deployment-demo
+        project: roboshop
+        app: nginx
+    spec: 
+      type: LoadBalancer
+      containers:
+      - name: nginx
+        image: nginx:{{ .Values.deployment.image_version }}
+
+
+ 
