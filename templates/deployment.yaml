@@ -9,7 +9,7 @@ metadata:
 spec: 
   replicas: {{ .Values.deployment.replicas }}
   selector:
-    matchlabels:
+    matchLabels:
       purpose: deployment-demo
       project: roboshop
       app: nginx
@@ -19,11 +19,27 @@ spec:
         purpose: deployment-demo
         project: roboshop
         app: nginx
+
     spec: 
-      type: LoadBalancer
       containers:
       - name: nginx
         image: nginx:{{ .Values.deployment.image_version }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: deployment-demo
+    project: roboshop
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+      
 
 
  
