@@ -4,6 +4,8 @@ metadata:
   name: nginx-service
   labels: 
     purpose: service-demo
+    project: roboshop
+    environment: dev
 spec: 
   selector:
     purpose: service-demo
